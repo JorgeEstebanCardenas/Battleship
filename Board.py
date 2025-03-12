@@ -45,7 +45,6 @@ class Board():
 
     def check_for_ship(self, x:int, y:int) -> bool:
         if self.board[x][y].hit():
-            print(f"Hit on ({x},{y})")
             return True
 
         return False

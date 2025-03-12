@@ -1,4 +1,6 @@
-from Battleship import Game;
+from Game import Game;
 
 
 G = Game()
+
+G.start_game()
