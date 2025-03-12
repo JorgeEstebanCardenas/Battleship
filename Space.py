@@ -1,12 +1,28 @@
 from Ship import Ship
+from Enums import States
 
 class Space():
 
     def __init__(self):
         self.ship = None
-        self.empty = True
+        self.state = States.EMPTY
 
     def add_ship(self, ship: 'Ship') -> None:
         self.ship = ship
 
-        self.empty = False
+        self.state = States.SHIP
+
+    def is_empty(self):
+        return self.state != States.SHIP
+
+    def hit(self):
+        if self.state is States.SHIP:
+            self.state = States.HIT
+            return True
+        
+        else:
+            self.state = States.MISS
+            return False
+
+    def get_icon(self):
+        return self.state.value

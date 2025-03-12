@@ -10,11 +10,11 @@ class Board():
     def check_ship_position(self, ship: 'Ship') -> bool:
         if ship.is_vertical:
             for i in range(ship.length):
-                if not self.board[ship.x][ship.y + i].empty:
+                if not self.board[ship.x][ship.y + i].is_empty():
                     return False
         else:
             for i in range(ship.length):
-                if not self.board[ship.x + i][ship.y].empty:
+                if not self.board[ship.x + i][ship.y].is_empty():
                     return False
                 
         return True
@@ -44,16 +44,17 @@ class Board():
         self.ships.append(ship)
 
     def check_for_ship(self, x:int, y:int) -> bool:
-        if not self.board[x][y].empty:
+        if self.board[x][y].hit():
             print(f"Hit on ({x},{y})")
+            return True
 
-        return not self.board[x][y].empty
+        return False
 
 
     def print(self):
         for line in self.board:
             for space in line:
-                print(" ." if space.empty else " 0", end=" ")
+                print(" " + space.get_icon(), end=" ")
             print("\n")
 
             

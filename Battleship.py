@@ -22,16 +22,19 @@ class Game():
         self.board.add_ship(3)
         self.board.add_ship(2)
 
-        self.board.print()
-
     def shoot(self, x: int, y: int) -> bool:
         self.board.check_for_ship(x,y)
+
+    def display(self):
+        self.board.print()
         
 
 
 
 if __name__ == '__main__':
     G = Game()
+
+    G.display()
 
     G.shoot(0,0)
     G.shoot(1,1)
@@ -43,3 +46,5 @@ if __name__ == '__main__':
     G.shoot(7,7)
     G.shoot(8,8)
     G.shoot(9,9)
+
+    G.display()

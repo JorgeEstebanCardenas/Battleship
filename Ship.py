@@ -14,10 +14,15 @@ class Ship():
 
     @staticmethod
     def random_ship(length: int) -> 'Ship':
-        
-        x = randrange(0, 10 - length + 1)
-        y = randrange(0, 10 - length + 1)
 
         is_vertical = randrange(0, 2)
-        
+
+        if is_vertical:
+            x = randrange(0, 10)
+            y = randrange(0, 10 - length + 1)
+        else:
+            x = randrange(0, 10 - length + 1)
+            y = randrange(0, 10)
+
+
         return Ship(x, y, is_vertical, length)
