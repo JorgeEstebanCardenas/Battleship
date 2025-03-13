@@ -1,6 +1,7 @@
 from Space import Space
 from Ship import Ship
 
+
 class Board():
 
     def __init__(self):
@@ -30,7 +31,6 @@ class Board():
         accepted = False
 
         while not accepted:
-            print(f"Trying to fit ship of length {ship_length}")
             if not self.check_ship_position(ship):
                 ship = Ship.random_ship(ship.length)
             else:
@@ -62,11 +62,11 @@ class Board():
 
         return False
     
-    def get_remaining_ships(self):
+    def get_remaining_ships(self) -> list:
         return [ship.length for ship in self.ships if not ship.is_sinked()]
 
 
-    def print(self):
+    def print(self) -> None:
         print("     ", end="")
         print("  ".join(str(n) for n in range(10)))
 
@@ -80,7 +80,7 @@ class Board():
                 print(" " + space.get_icon(), end=" ")
             print("\n")
 
-        print(f"Remaining Ships: {self.get_remaining_ships()}")
-        print(f"Remaining hits: {self.remaining_hits}/{self.total_hits}")
+        print(f"\nRemaining Ships: {self.get_remaining_ships()}")
+        print(f"Remaining hits: {self.remaining_hits}/{self.total_hits}\n")
 
             

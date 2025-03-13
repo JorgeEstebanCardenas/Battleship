@@ -2,7 +2,7 @@ import os
 from Ship import Ship
 from logger_setup import setup_logger
 from Board import Board
-
+from colorama import init
 
 class Game():
 
@@ -11,12 +11,16 @@ class Game():
         self.board = Board()
         self.shots = 0
 
+        init()
+
         self.setup_ships()
 
     def start_game(self):
         finished = False
 
-        print("Game is starting")
+        print("Game is starting")            
+        print("===================================")
+
 
         while not finished:
             # self.clear_screen()
@@ -24,23 +28,24 @@ class Game():
             
             finished = self.handle_input()
 
+            if self.board.remaining_hits <= 0:
+                finished = True
+                self.print_stats()
+
 
             
-    def clear_screen(self):
+    def clear_screen(self) -> None:
         os.system('cls' if os.name == 'nt' else 'clear')
 
 
-    def display(self):
+    def display(self) -> None:
         self.board.print()
 
 
-    def handle_input(self):
+    def handle_input(self) -> bool:
         user_input = input("Enter two integers separated by a space (or press Enter to quit): ")
         
         if not user_input.strip():
-            print("===================================")
-            print("Game ended")
-
             self.print_stats()
             return True
 
@@ -63,7 +68,9 @@ class Game():
         
         return False
 
-    def print_stats(self):
+    def print_stats(self) -> None:
+        print("===================================")
+        print("Game ended")
 
         print("\nGAME STATS")
 
@@ -74,7 +81,9 @@ class Game():
         print(f"Hit rate: {self.get_hit_rate():.0%} ({self.board.total_hits - self.board.remaining_hits} out of {self.shots})")
 
 
-    def get_hit_rate(self):
+    def get_hit_rate(self) -> float:
+        if self.shots == 0: return 0
+
         return ((self.board.total_hits - self.board.remaining_hits)/self.shots)
 
 

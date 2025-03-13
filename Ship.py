@@ -12,7 +12,7 @@ class Ship():
 
         self.logger = setup_logger()
 
-    def is_sinked(self):
+    def is_sinked(self) -> bool:
         return self.health <= 0
 
     @staticmethod
