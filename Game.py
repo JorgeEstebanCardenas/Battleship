@@ -9,6 +9,7 @@ class Game():
     def __init__(self):
         self.logger = setup_logger()
         self.board = Board()
+        self.shots = 0
 
         self.setup_ships()
 
@@ -19,11 +20,10 @@ class Game():
 
         while not finished:
             # self.clear_screen()
-            print("===================================")
-
             self.display()
-
+            
             finished = self.handle_input()
+
 
             
     def clear_screen(self):
@@ -40,16 +40,22 @@ class Game():
         if not user_input.strip():
             print("===================================")
             print("Game ended")
-            print(f"You got {self.board.total_hits - self.board.remaining_hits} out of {self.board.total_hits} hits")
+
+            self.print_stats()
             return True
 
         try:
             x, y = map(int, user_input.split())
+
+            print("===================================")
+
    
             if self.shoot(x, y):
                 print(f"Hit on ({x},{y})")
             else:
                 print(f"Miss on ({x},{y})")
+
+            self.shots += 1
 
 
         except ValueError:
@@ -57,7 +63,19 @@ class Game():
         
         return False
 
-       
+    def print_stats(self):
+
+        print("\nGAME STATS")
+
+        print("----------------------------------")
+
+        print(f"Total shots: {self.shots}")
+        print(f"You got {self.board.total_hits - self.board.remaining_hits} out of {self.board.total_hits} hits")
+        print(f"Hit rate: {self.get_hit_rate():.0%} ({self.board.total_hits - self.board.remaining_hits} out of {self.shots})")
+
+
+    def get_hit_rate(self):
+        return ((self.board.total_hits - self.board.remaining_hits)/self.shots)
 
 
     def setup_ships(self) -> None:
