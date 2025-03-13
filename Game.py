@@ -29,6 +29,7 @@ class Game():
 
             if self.board.remaining_hits <= 0:
                 finished = True
+                self.display()
                 self.print_stats()
 
 
