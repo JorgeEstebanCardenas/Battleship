@@ -1,6 +1,6 @@
 from Space import Space
 from Ship import Ship
-
+from colorama import Fore, Style
 
 class Board():
 
@@ -55,7 +55,7 @@ class Board():
             if self.board[x][y].is_ship_sinked():
 
 
-                print(f"{self.board[x][y].ship.length} ship sinked")
+                print(Fore.RED + f"{self.board[x][y].ship.length} ship sinked" + Style.RESET_ALL)
 
                 
             return True

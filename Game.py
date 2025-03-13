@@ -2,7 +2,7 @@ import os
 from Ship import Ship
 from logger_setup import setup_logger
 from Board import Board
-from colorama import init
+from colorama import init, Fore, Style
 
 class Game():
 
@@ -23,7 +23,6 @@ class Game():
 
 
         while not finished:
-            # self.clear_screen()
             self.display()
             
             finished = self.handle_input()
@@ -45,6 +44,8 @@ class Game():
     def handle_input(self) -> bool:
         user_input = input("Enter two integers separated by a space (or press Enter to quit): ")
         
+
+
         if not user_input.strip():
             self.print_stats()
             return True
@@ -56,7 +57,7 @@ class Game():
 
    
             if self.shoot(x, y):
-                print(f"Hit on ({x},{y})")
+                print(Fore.RED + f"Hit on ({x},{y})" + Style.RESET_ALL)
             else:
                 print(f"Miss on ({x},{y})")
 
@@ -64,13 +65,21 @@ class Game():
 
 
         except ValueError:
-            print("Invalid input. Please enter two integers.")
+            print(Fore.YELLOW + "Invalid input. Please enter two integers." + Style.RESET_ALL)
+
+            print("===================================")
+
+
+
         
         return False
 
     def print_stats(self) -> None:
         print("===================================")
-        print("Game ended")
+        print("Game ended\n")
+
+        if self.board.remaining_hits == 0:
+            print(Fore.GREEN + "YOU WIN" + Style.RESET_ALL)
 
         print("\nGAME STATS")
 
