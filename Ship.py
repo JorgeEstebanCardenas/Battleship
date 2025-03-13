@@ -8,9 +8,12 @@ class Ship():
         self.y = y
         self.is_vertical = is_vertical
         self.length = length
+        self.health = length
 
         self.logger = setup_logger()
 
+    def is_sinked(self):
+        return self.health <= 0
 
     @staticmethod
     def random_ship(length: int) -> 'Ship':

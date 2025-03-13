@@ -38,7 +38,9 @@ class Game():
         user_input = input("Enter two integers separated by a space (or press Enter to quit): ")
         
         if not user_input.strip():
+            print("===================================")
             print("Game ended")
+            print(f"You got {self.board.total_hits - self.board.remaining_hits} out of {self.board.total_hits} hits")
             return True
 
         try:

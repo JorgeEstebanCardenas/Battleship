@@ -24,11 +24,15 @@ class Space():
     def hit(self):
         if self.state is States.SHIP:
             self.state = States.HIT
+            self.ship.health -= 1
             return True
         
         else:
             self.state = States.MISS
             return False
+        
+    def is_ship_sinked(self):
+        return self.ship.is_sinked()
 
     def get_icon(self):
         return self.state_icons[self.state]
