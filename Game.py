@@ -18,7 +18,8 @@ class Game():
         print("Game is starting")
 
         while not finished:
-            self.clear_screen()
+            # self.clear_screen()
+            print("===================================")
 
             self.display()
 
@@ -58,7 +59,7 @@ class Game():
 
 
     def setup_ships(self) -> None:
-        self.logger.info("Setting up ships")
+        print("Setting up ships")
 
         self.board.add_ship(5)
         self.board.add_ship(4)

@@ -28,6 +28,7 @@ class Board():
         accepted = False
 
         while not accepted:
+            print(f"Trying to fit ship of length {ship_length}")
             if not self.check_ship_position(ship):
                 ship = Ship.random_ship(ship.length)
             else:
@@ -51,7 +52,15 @@ class Board():
 
 
     def print(self):
-        for line in self.board:
+        print("     ", end="")
+        print("  ".join(str(n) for n in range(10)))
+
+        print("     ", end="")
+        print("  ".join("|" for n in range(10)))
+
+        for n, line in enumerate(self.board):
+            print(n, end=" - ")
+
             for space in line:
                 print(" " + space.get_icon(), end=" ")
             print("\n")

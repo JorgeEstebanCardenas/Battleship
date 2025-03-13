@@ -6,6 +6,12 @@ class Space():
     def __init__(self):
         self.ship = None
         self.state = States.EMPTY
+        self.state_icons = {
+            States.EMPTY: ".",
+            States.HIT: "H",
+            States.MISS: "M",
+            States.SHIP: "0"
+        }
 
     def add_ship(self, ship: 'Ship') -> None:
         self.ship = ship
@@ -25,4 +31,4 @@ class Space():
             return False
 
     def get_icon(self):
-        return self.state.value
+        return self.state_icons[self.state]

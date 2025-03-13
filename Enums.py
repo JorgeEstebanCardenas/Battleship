@@ -1,7 +1,7 @@
 from enum import Enum
 
 class States(Enum):
-    EMPTY = "."
-    MISS = "M"
-    HIT = "X"
-    SHIP = "0"
+    EMPTY = 1
+    MISS = 2
+    HIT = 3
+    SHIP = 4
