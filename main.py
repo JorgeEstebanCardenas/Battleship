@@ -1,11 +1,11 @@
 from Game import Game;
 from random_algo import RandomBattleship, ImprovedRandomBattleship
-from ThinkingAlgo import HunterBattleship, ParityBattleship
+from ThinkingAlgo import HunterBattleship, ParityBattleship, FullKnowledgeBattleship
 import pandas as pd
 
 
 
-def runSimulations(controller, games=1000):
+def runSimulations(controller, games=1_000_000):
     total_shots = 0
     data = pd.Series([0]*games)
 
@@ -43,6 +43,11 @@ runSimulations(controller)
 print("Running Parity Algorithm")
 game = Game()
 controller = ParityBattleship(game)
+runSimulations(controller)
+
+print("Running Full knowledge Algorithm")
+game = Game()
+controller = FullKnowledgeBattleship(game)
 runSimulations(controller)
 
 

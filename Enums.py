@@ -5,3 +5,11 @@ class States(Enum):
     MISS = 2
     HIT = 3
     SHIP = 4
+
+class Results(Enum):
+    MISS=0
+    HIT=1
+    SUNK_2=2
+    SUNK_3=3
+    SUNK_4=4
+    SUNK_5=5

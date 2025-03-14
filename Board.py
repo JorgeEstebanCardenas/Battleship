@@ -1,6 +1,7 @@
 from Space import Space
 from Ship import Ship
 from colorama import Fore, Style
+from Enums import Results
 
 class Board():
 
@@ -48,17 +49,28 @@ class Board():
         self.remaining_hits += ship_length
         self.total_hits += ship_length
 
-    def check_for_ship(self, x:int, y:int) -> bool:
+    def check_for_ship(self, x:int, y:int) -> int:
+        """
+        Returns a number depending on the result.
+
+        HIT -> 1
+
+        MISS -> 0
+
+        And if a ship was sinked it return the lenght of the ship. Ex: 2
+
+        """
         if self.board[x][y].hit():
             self.remaining_hits -= 1
 
-            # if self.board[x][y].is_ship_sinked():
+            if self.board[x][y].is_ship_sinked():
+                return self.board[x][y].ship.length
             #     print(Fore.RED + f"{self.board[x][y].ship.length} ship sinked" + Style.RESET_ALL)
 
                 
-            return True
+            return Results.HIT.value
 
-        return False
+        return Results.MISS.value
     
     def get_remaining_ships(self) -> list:
         return [ship.length for ship in self.ships if not ship.is_sinked()]
