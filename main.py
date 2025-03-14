@@ -1,6 +1,6 @@
 from Game import Game;
 from random_algo import RandomBattleship, ImprovedRandomBattleship
-from ThinkingAlgo import HunterBattleship
+from ThinkingAlgo import HunterBattleship, ParityBattleship
 import pandas as pd
 
 
@@ -38,6 +38,11 @@ runSimulations(controller)
 print("Running hunter Algorithm")
 game = Game()
 controller = HunterBattleship(game)
+runSimulations(controller)
+
+print("Running Parity Algorithm")
+game = Game()
+controller = ParityBattleship(game)
 runSimulations(controller)
 
 

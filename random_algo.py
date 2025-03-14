@@ -10,7 +10,7 @@ class RandomBattleship():
 
 
     def run(self) -> int:
-        for i in range(1000):
+        while not self.game.game_done():
 
             x = randrange(0,10)
             y = randrange(0,10)
@@ -18,9 +18,6 @@ class RandomBattleship():
             self.game.shoot(x, y)
 
             self.shots += 1
-
-            if self.game.game_done():
-                break
         
         return self.shots
     
@@ -37,7 +34,7 @@ class ImprovedRandomBattleship():
 
 
     def run(self) -> int:
-        for i in range(1000):
+        while not self.game.game_done():
 
             while True:
                 x = randrange(0,10)
@@ -51,9 +48,6 @@ class ImprovedRandomBattleship():
             self.shots += 1
 
             self.history.add((x,y))
-
-            if self.game.game_done():
-                break
         
         return self.shots
     
