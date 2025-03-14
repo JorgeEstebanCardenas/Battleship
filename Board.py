@@ -52,10 +52,8 @@ class Board():
         if self.board[x][y].hit():
             self.remaining_hits -= 1
 
-            if self.board[x][y].is_ship_sinked():
-
-
-                print(Fore.RED + f"{self.board[x][y].ship.length} ship sinked" + Style.RESET_ALL)
+            # if self.board[x][y].is_ship_sinked():
+            #     print(Fore.RED + f"{self.board[x][y].ship.length} ship sinked" + Style.RESET_ALL)
 
                 
             return True

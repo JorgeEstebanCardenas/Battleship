@@ -10,29 +10,26 @@ class Game():
         self.logger = setup_logger()
         self.board = Board()
         self.shots = 0
+        self.finished = False
 
         init()
 
         self.setup_ships()
 
-    def start_game(self):
-        finished = False
-
+    def start_UI_game(self):
         print("Game is starting")            
         print("===================================")
 
 
-        while not finished:
+        while not self.finished:
             self.display()
             
-            finished = self.handle_input()
+            self.finished = self.handle_input()
 
             if self.board.remaining_hits <= 0:
-                finished = True
+                self.finished = True
                 self.display()
                 self.print_stats()
-
-
             
     def clear_screen(self) -> None:
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -61,9 +58,6 @@ class Game():
                 print(Fore.RED + f"Hit on ({x},{y})" + Style.RESET_ALL)
             else:
                 print(f"Miss on ({x},{y})")
-
-            self.shots += 1
-
 
         except ValueError:
             print(Fore.YELLOW + "Invalid input. Please enter two integers." + Style.RESET_ALL)
@@ -98,15 +92,19 @@ class Game():
 
 
     def setup_ships(self) -> None:
-        print("Setting up ships")
-
         self.board.add_ship(5)
         self.board.add_ship(4)
         self.board.add_ship(3)
         self.board.add_ship(3)
         self.board.add_ship(2)
 
+    def game_done(self) -> bool:
+        return self.board.remaining_hits <= 0
+
+
     def shoot(self, x: int, y: int) -> bool:
+        self.shots += 1
+
         return self.board.check_for_ship(x,y)
 
    
@@ -117,4 +115,4 @@ class Game():
 if __name__ == '__main__':
     G = Game()
 
-    G.start_game()
+    G.start_UI_game()

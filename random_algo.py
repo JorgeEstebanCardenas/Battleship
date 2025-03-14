@@ -1,0 +1,67 @@
+from Game import Game
+from random import randrange
+
+
+class RandomBattleship():
+
+    def __init__(self, game: 'Game'):
+        self.game = game
+        self.shots = 0
+
+
+    def run(self) -> int:
+        for i in range(1000):
+
+            x = randrange(0,10)
+            y = randrange(0,10)
+
+            self.game.shoot(x, y)
+
+            self.shots += 1
+
+            if self.game.game_done():
+                break
+        
+        return self.shots
+           
+
+class ImprovedRandomBattleship():
+    def __init__(self, game: 'Game'):
+        self.game = game
+        self.history = set()
+        self.shots = 0
+
+
+    def run(self) -> int:
+        for i in range(1000):
+
+            while True:
+                x = randrange(0,10)
+                y = randrange(0,10)
+
+                if (x,y) not in self.history:
+                    break
+
+            self.game.shoot(x, y)
+
+            self.shots += 1
+
+            self.history.add((x,y))
+
+            if self.game.game_done():
+                break
+        
+        return self.shots
+    
+if __name__ == '__main__':
+
+    game = Game()
+    simul = RandomBattleship(game)
+
+    print(f"Random {simul.run()}")
+
+    game = Game()
+    simul = ImprovedRandomBattleship(game)
+
+    print(f"Improved {simul.run()}")
+
