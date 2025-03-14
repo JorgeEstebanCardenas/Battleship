@@ -64,6 +64,12 @@ class HunterBattleship():
         if y != 9 and (x, y + 1) not in self.history: 
             self.targets.append((x, y + 1))
 
+    def reset(self) -> None:
+        self.history = set()
+        self.targets = []
+        self.shots = 0
+        self.game = Game()
+
 
 if __name__ == '__main__':
 

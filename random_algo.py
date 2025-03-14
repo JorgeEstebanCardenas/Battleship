@@ -23,6 +23,10 @@ class RandomBattleship():
                 break
         
         return self.shots
+    
+    def reset(self) -> None:
+        self.shots = 0
+        self.game = Game()
            
 
 class ImprovedRandomBattleship():
@@ -52,6 +56,12 @@ class ImprovedRandomBattleship():
                 break
         
         return self.shots
+    
+    def reset(self) -> None:
+        self.shots = 0
+        self.game = Game()
+        self.history = set()
+
     
 if __name__ == '__main__':
 
