@@ -1,5 +1,4 @@
-from random import randrange, choice
-from logger_setup import setup_logger
+from random import randrange
 
 class Ship():
 
@@ -10,7 +9,6 @@ class Ship():
         self.length = length
         self.health = length
 
-        self.logger = setup_logger()
 
     def is_sinked(self) -> bool:
         return self.health <= 0

@@ -1,13 +1,11 @@
 import os
-from Ship import Ship
-from logger_setup import setup_logger
-from Board import Board
+from Battleship.Ship import Ship
+from Battleship.Board import Board
 from colorama import init, Fore, Style
 
 class Game():
 
     def __init__(self):
-        self.logger = setup_logger()
         self.board = Board()
         self.shots = 0
         self.finished = False

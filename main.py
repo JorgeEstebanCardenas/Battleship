@@ -1,6 +1,6 @@
-from Game import Game;
-from random_algo import RandomBattleship, ImprovedRandomBattleship
-from ThinkingAlgo import HunterBattleship, ParityBattleship, FullKnowledgeBattleship
+from Battleship.Game import Game;
+from Algorithm.random_algo import RandomBattleship, ImprovedRandomBattleship
+from Algorithm.ThinkingAlgo import HunterBattleship, ParityBattleship, FullKnowledgeBattleship
 import pandas as pd
 
 

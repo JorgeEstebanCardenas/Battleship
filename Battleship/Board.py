@@ -1,7 +1,7 @@
-from Space import Space
-from Ship import Ship
+from Battleship.Space import Space
+from Battleship.Ship import Ship
 from colorama import Fore, Style
-from Enums import Results
+from Battleship.Enums import Results
 
 class Board():
 

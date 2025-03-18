@@ -1,4 +1,4 @@
-from Game import Game
+from Battleship.Game import Game
 from random import randrange
 
 

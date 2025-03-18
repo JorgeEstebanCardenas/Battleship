@@ -1,5 +1,5 @@
-from Ship import Ship
-from Enums import States
+from Battleship.Ship import Ship
+from Battleship.Enums import States
 from colorama import Fore, Style
 
 class Space():
